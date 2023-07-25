@@ -1,0 +1,814 @@
+<div class="container">
+    <mat-form-field class="Select"> 
+        <mat-label>Select columns</mat-label>
+        <mat-select [formControl]="toppings" multiple [(ngModel)]="SelectedColumn">
+          <mat-select-trigger>
+            {{toppings.value?.[0] || ''}}
+            <span *ngIf="(toppings.value?.length || 0) > 1" class="example-additional-selection">
+              (+{{(toppings.value?.length || 0) - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})
+            </span>
+          </mat-select-trigger>
+          <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="GetData()">Submit</button>
+
+
+
+
+    
+  
+  
+  
+
+    <div>
+  
+      <div class="mt-3 mat-elevation-z8" style="margin-top: 15px;">
+  
+          <table mat-table [dataSource]="dataSource" class="">
+  
+     
+  
+           
+  
+            <ng-container matColumnDef="source">
+  
+              <th mat-header-cell *matHeaderCellDef>
+  
+                <h3><b>source</b></h3>
+  
+              </th>
+  
+              <td mat-cell *matCellDef="let element">{{ element.source }}</td>
+  
+            </ng-container>
+  
+  
+  
+  
+            <!-- <ng-container matColumnDef="demandStatus">
+  
+              <th mat-header-cell *matHeaderCellDef>
+  
+                <h3><b>demandStatus</b></h3>
+  
+              </th>
+  
+              <td mat-cell *matCellDef="let element">{{ element.demandStatus }}</td>
+  
+            </ng-container> -->
+  
+     
+  
+           
+  
+            <ng-container matColumnDef="teamRequestId">
+  
+              <th mat-header-cell *matHeaderCellDef>
+  
+                <h3><b>teamRequestId</b></h3>
+  
+              </th>
+  
+              <td mat-cell *matCellDef="let element">{{ element.teamRequestId }}</td>
+  
+            </ng-container>
+  
+     
+  
+            <!-- projectName Column -->
+  
+            <!-- <ng-container matColumnDef="positionId
+            ">
+  
+              <th mat-header-cell *matHeaderCellDef>
+  
+                positionId
+  
+              </th>
+  
+              <td mat-cell *matCellDef="let element">{{ element.positionId}}</td>
+  
+            </ng-container> -->
+  
+     
+  
+           
+  
+            <!-- <ng-container matColumnDef="demandType
+            ">
+  
+              <th mat-header-cell *matHeaderCellDef>
+  
+                demandType
+
+  
+              </th>
+  
+              <td mat-cell *matCellDef="let element">
+  
+                {{ element.demandType}}
+  
+              </td>
+  
+            </ng-container> -->
+  
+     
+  
+           
+  
+            <ng-container matColumnDef="jobName">
+  
+              <th mat-header-cell *matHeaderCellDef> <h3><b>jobName</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.jobName}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="positionName">
+  
+                <th mat-header-cell *matHeaderCellDef> <h3><b>positionName</b></h3> </th>
+    
+                <td mat-cell *matCellDef="let element"> {{element.positionName}}</td>
+    
+              </ng-container> 
+
+              <ng-container matColumnDef="client">
+  
+                <th mat-header-cell *matHeaderCellDef> <h3><b>client</b></h3> </th>
+    
+                <td mat-cell *matCellDef="let element"> {{element.client}}</td>
+    
+              </ng-container>
+              
+
+            
+
+            <ng-container matColumnDef="subSector">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>subSector</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.subSector}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="accountGeoCity">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>accountGeoCity</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.accountGeoCity}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="accountGeoName">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>accountGeoName</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.accountGeoName}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="accountRegion">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>accountRegion</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.accountRegion}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="additionalNotes">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>additionalNotes</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.additionalNotes}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="agedPastDueYN">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>agedPastDueYN</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.agedPastDueYN}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="ageing">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>ageing</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.ageing}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="assignedTo">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>assignedTo</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.assignedTo}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="backFillReason">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>backFillReason</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.backFillReason}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="buOfAccount">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>buOfAccount</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.buOfAccount}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="buOfSkill">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>buOfSkill</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.buOfSkill}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="buspHandler">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>buspHandler</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.buspHandler}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="candidateCount">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>candidateCount</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.candidateCount}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="clientReference">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>clientReference</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.clientReference}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="closestGeoHub">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>closestGeoHub</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.closestGeoHub}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="countryOfDeliveryPrimary">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>countryOfDeliveryPrimary</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.countryOfDeliveryPrimary}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="creationDate">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>creationDate</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.creationDate}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="deliveryRole">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>deliveryRole</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.deliveryRole}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="deliverySkills">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>deliverySkills</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.deliverySkills}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="deliveryType">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>deliveryType</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.deliveryType}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="demandFulfillmentStatus">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>demandFulfillmentStatus</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.demandFulfillmentStatus}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="demandStatus">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>demandStatus</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.demandStatus}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="demandType">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>demandType</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.demandType}}</td>
+  
+            </ng-container>
+
+
+            <ng-container matColumnDef="dmdCaseStatus">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>dmdCaseStatus</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.dmdCaseStatus}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="durationInAgedPastStatus">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>durationInAgedPastStatus</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.durationInAgedPastStatus}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="excludeOffshoreDcxID">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>excludeOffshoreDcxID</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.excludeOffshoreDcxID}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="expectedDailyRate">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>expectedDailyRate</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.expectedDailyRate}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="forecastType">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>forecastType</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.forecastType}}</td>
+  
+            </ng-container>
+
+
+            <ng-container matColumnDef="fte">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>fte</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.fte}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="fulfillmentChannelFinal">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>fulfillmentChannelFinal</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.fulfillmentChannelFinal}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="globalGrade">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>globalGrade</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.globalGrade}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="globalPractice">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>globalPractice</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.globalPractice}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="headCountType">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>headCountType</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.headCountType}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="hubSpoke">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>hubSpoke</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.hubSpoke}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="isClientInterviewRequired">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>isClientInterviewRequired</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.isClientInterviewRequired}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="leadMarketAndPracticeAreaSame">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>leadMarketAndPracticeAreaSame</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.leadMarketAndPracticeAreaSame}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="leadMarketArea">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>leadMarketArea</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.leadMarketArea}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="leadPracticeArea">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>leadPracticeArea</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.leadPracticeArea}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="leadtimeInDays">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>leadtimeInDays</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.leadtimeInDays}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="localGrade">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>localGrade</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.localGrade}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="locationDescription">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>locationDescription</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.locationDescription}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="marketUnitBu">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>marketUnitBu</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.marketUnitBu}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="microSector">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>microSector</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.microSector}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="noOfSelfAppliedApplications">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>noOfSelfAppliedApplications</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.noOfSelfAppliedApplications}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="outgoingEmployee">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>outgoingEmployee</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.outgoingEmployee}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="positionId">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>positionId</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.positionId}}</td>
+  
+            </ng-container>
+
+            <!-- <ng-container matColumnDef="positionName">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>positionName</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.positionName}}</td>
+  
+            </ng-container> -->
+
+            <ng-container matColumnDef="practice">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>practice</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.practice}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="primaryCity">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>primaryCity</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.primaryCity}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="primaryGeoCity">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>primaryGeoCity</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.primaryGeoCity}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="primaryGeoName">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>primaryGeoName</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.primaryGeoName}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="primaryLocationName">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>primaryLocationName</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.primaryLocationName}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="primaryRegion">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>primaryRegion</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.primaryRegion}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="primaryState">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>primaryState</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.primaryState}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="primaryZipCode">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>primaryZipCode</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.primaryZipCode}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="productionUnit">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>productionUnit</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.productionUnit}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="productionUnitName">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>productionUnitName</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.productionUnitName}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="projectCode">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>projectCode</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.projectCode}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="pspHandler">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>pspHandler</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.pspHandler}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="recruiter">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>recruiter</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.recruiter}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="recruitingId">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>recruitingId</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.recruitingId}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="requestCreator">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>requestCreator</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.requestCreator}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="requestUpdater">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>requestUpdater</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.requestUpdater}}</td>
+  
+            </ng-container>
+
+            
+            <ng-container matColumnDef="requestedBy">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>requestedBy</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.requestedBy}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="roleComment1">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>roleComment1</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.roleComment1}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="roleEndDate">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>roleEndDate</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.roleEndDate}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="roleNotes">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>roleNotes</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.roleNotes}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="roleStartDate">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>roleStartDate</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.roleStartDate}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="roleType">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>roleType</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.roleType}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="s2rCaseId">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>s2rCaseId</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.s2rCaseId}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="s2rId">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>s2rId</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.s2rId}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="s2rManaged">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>s2rManaged</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.s2rManaged}}</td>
+  
+            </ng-container>
+
+            <ng-container matColumnDef="sellingBu">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>sellingBu</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.sellingBu}}</td>
+  
+            </ng-container>
+
+            <!-- <ng-container matColumnDef="sellingBu">
+
+              <th mat-header-cell *matHeaderCellDef> <h3><b>sellingBu</b></h3> </th>
+  
+              <td mat-cell *matCellDef="let element"> {{element.sellingBu}}</td>
+  
+            </ng-container> -->
+
+
+
+            
+            
+
+
+
+
+            
+              
+
+             
+  
+  
+  
+  
+            <!-- <ng-container matColumnDef="details" style="margin-left: 2px;">
+  
+              <th mat-header-cell *matHeaderCellDef></th>
+  
+              <td mat-cell *matCellDef="let element"><button mat-icon-button [routerLink]="['/app-request',element.id]"><mat-icon>visibility</mat-icon></button> </td>
+  
+            </ng-container> -->
+  
+     
+  
+            <!-- <ng-container matColumnDef="status">
+  
+                <th mat-header-cell *matHeaderCellDef> Status </th>
+  
+                <td mat-cell *matCellDef="let element">
+  
+                <button mat-fab extended class="st-bt" [routerLink]="['/app-view-psp',element.id]" [ngStyle]="{'background-color':getColor(element.status)}">
+  
+                  {{element.status}}
+  
+                </button></td>
+  
+     
+  
+     
+  
+     
+  
+              </ng-container> -->
+  
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  
+      </table>
+  
+      <mat-paginator
+  
+        [length]="100"
+  
+        [pageSize]="25"
+  
+        [pageSizeOptions]="[5, 10, 25, 100]"
+  
+        aria-label="Select page"
+  
+      >
+  
+      </mat-paginator>
+  
+         
+  
+    </div>
+  
+    </div>
+  
+  </div>

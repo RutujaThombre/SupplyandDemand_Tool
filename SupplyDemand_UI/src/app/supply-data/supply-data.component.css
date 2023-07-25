@@ -1,0 +1,9 @@
+.example-additional-selection {
+    opacity: 0.75;
+    font-size: 0.75em;
+  }
+  .Select{
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
